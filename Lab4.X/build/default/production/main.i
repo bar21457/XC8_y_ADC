@@ -2672,12 +2672,20 @@ extern __bank0 __bit __timeout;
 
 
 void setup(void);
-# 79 "main.c"
+void setupADC(void);
+
+
+
+
 void main(void) {
 
     setup();
+    setupADC();
 
     while(1){
+
+
+
         if(!PORTBbits.RB0)
         {
             while(!RB0){}
@@ -2688,6 +2696,14 @@ void main(void) {
             while(!RB1){}
             PORTD --;
         }
+
+
+
+        ADCON0bits.GO = 1;
+        while (ADCON0bits.GO == 1){};
+        ADIF = 0;
+        PORTC = ADRESH;
+        _delay((unsigned long)((10)*(4000000/4000.0)));
 
     }
 
@@ -2703,6 +2719,7 @@ void setup (void){
     ANSELH = 0;
 
     TRISB = 0b00000011;
+    TRISC = 0;
     TRISD = 0;
 
     OPTION_REGbits.nRBPU = 0;
@@ -2710,11 +2727,39 @@ void setup (void){
     WPUBbits.WPUB1 = 1;
 
     PORTB = 0;
+    PORTC = 0;
     PORTD = 0;
 
 
 
     OSCCONbits.IRCF = 0b0110 ;
     OSCCONbits.SCS = 1;
-# 132 "main.c"
+# 119 "main.c"
+}
+
+void setupADC (void){
+
+
+
+    TRISAbits.TRISA0 = 1;
+    ANSELbits.ANS0 = 1;
+
+
+
+    ADCON0bits.ADCS0 = 1;
+    ADCON0bits.ADCS1 = 0;
+
+    ADCON1bits.VCFG0 = 0;
+    ADCON1bits.VCFG1 = 0;
+
+    ADCON1bits.ADFM = 0;
+
+    ADCON0bits.CHS0 = 0;
+    ADCON0bits.CHS1 = 0;
+    ADCON0bits.CHS2 = 0;
+    ADCON0bits.CHS3 = 0;
+
+    ADCON0bits.ADON = 1;
+
+    _delay((unsigned long)((100)*(4000000/4000000.0)));
 }

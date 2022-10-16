@@ -11,13 +11,15 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"79 C:\Users\byron\OneDrive\Documents\GitHub\XC8_y_ADC\Lab4.X\main.c
+"52 C:\Users\byron\OneDrive\Documents\GitHub\XC8_y_ADC\Lab4.X\main.c
 [v _main main `(v  1 e 1 0 ]
-"103
+"88
 [v _setup setup `(v  1 e 1 0 ]
+"121
+[v _setupADC setupADC `(v  1 e 1 0 ]
 "229 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
-[s S26 . 1 `uc 1 RB0 1 0 :1:0 
+[s S30 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
 `uc 1 RB3 1 0 :1:3 
@@ -27,11 +29,38 @@
 `uc 1 RB7 1 0 :1:7 
 ]
 "246
-[u S35 . 1 `S26 1 . 1 0 ]
-[v _PORTBbits PORTBbits `VES35  1 e 1 @6 ]
+[u S39 . 1 `S30 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES39  1 e 1 @6 ]
+"291
+[v _PORTC PORTC `VEuc  1 e 1 @7 ]
 "353
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
-[s S54 . 1 `uc 1 PS 1 0 :3:0 
+"1239
+[v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
+[s S54 . 1 `uc 1 ADON 1 0 :1:0 
+`uc 1 GO_nDONE 1 0 :1:1 
+`uc 1 CHS 1 0 :4:2 
+`uc 1 ADCS 1 0 :2:6 
+]
+"1277
+[s S59 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO 1 0 :1:1 
+`uc 1 CHS0 1 0 :1:2 
+`uc 1 CHS1 1 0 :1:3 
+`uc 1 CHS2 1 0 :1:4 
+`uc 1 CHS3 1 0 :1:5 
+`uc 1 ADCS0 1 0 :1:6 
+`uc 1 ADCS1 1 0 :1:7 
+]
+[s S68 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 nDONE 1 0 :1:1 
+]
+[s S71 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO_DONE 1 0 :1:1 
+]
+[u S74 . 1 `S54 1 . 1 0 `S59 1 . 1 0 `S68 1 . 1 0 `S71 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES74  1 e 1 @31 ]
+[s S114 . 1 `uc 1 PS 1 0 :3:0 
 `uc 1 PSA 1 0 :1:3 
 `uc 1 T0SE 1 0 :1:4 
 `uc 1 T0CS 1 0 :1:5 
@@ -39,34 +68,48 @@
 `uc 1 nRBPU 1 0 :1:7 
 ]
 "1367
-[s S61 . 1 `uc 1 PS0 1 0 :1:0 
+[s S121 . 1 `uc 1 PS0 1 0 :1:0 
 `uc 1 PS1 1 0 :1:1 
 `uc 1 PS2 1 0 :1:2 
 ]
-[u S65 . 1 `S54 1 . 1 0 `S61 1 . 1 0 ]
-[v _OPTION_REGbits OPTION_REGbits `VES65  1 e 1 @129 ]
+[u S125 . 1 `S114 1 . 1 0 `S121 1 . 1 0 ]
+[v _OPTION_REGbits OPTION_REGbits `VES125  1 e 1 @129 ]
+[s S193 . 1 `uc 1 TRISA0 1 0 :1:0 
+`uc 1 TRISA1 1 0 :1:1 
+`uc 1 TRISA2 1 0 :1:2 
+`uc 1 TRISA3 1 0 :1:3 
+`uc 1 TRISA4 1 0 :1:4 
+`uc 1 TRISA5 1 0 :1:5 
+`uc 1 TRISA6 1 0 :1:6 
+`uc 1 TRISA7 1 0 :1:7 
+]
+"1434
+[u S202 . 1 `S193 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES202  1 e 1 @133 ]
 "1479
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
+"1541
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
 "1603
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
-[s S107 . 1 `uc 1 SCS 1 0 :1:0 
+[s S167 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 ]
 "1883
-[s S113 . 1 `uc 1 . 1 0 :4:0 
+[s S173 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S118 . 1 `S107 1 . 1 0 `S113 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES118  1 e 1 @143 ]
-[s S80 . 1 `uc 1 WPUB 1 0 :8:0 
+[u S178 . 1 `S167 1 . 1 0 `S173 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES178  1 e 1 @143 ]
+[s S140 . 1 `uc 1 WPUB 1 0 :8:0 
 ]
 "2367
-[s S82 . 1 `uc 1 WPUB0 1 0 :1:0 
+[s S142 . 1 `uc 1 WPUB0 1 0 :1:0 
 `uc 1 WPUB1 1 0 :1:1 
 `uc 1 WPUB2 1 0 :1:2 
 `uc 1 WPUB3 1 0 :1:3 
@@ -75,23 +118,51 @@
 `uc 1 WPUB6 1 0 :1:6 
 `uc 1 WPUB7 1 0 :1:7 
 ]
-[u S91 . 1 `S80 1 . 1 0 `S82 1 . 1 0 ]
-[v _WPUBbits WPUBbits `VES91  1 e 1 @149 ]
+[u S151 . 1 `S140 1 . 1 0 `S142 1 . 1 0 ]
+[v _WPUBbits WPUBbits `VES151  1 e 1 @149 ]
+[s S235 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 VCFG0 1 0 :1:4 
+`uc 1 VCFG1 1 0 :1:5 
+`uc 1 . 1 0 :1:6 
+`uc 1 ADFM 1 0 :1:7 
+]
+"2992
+[u S241 . 1 `S235 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES241  1 e 1 @159 ]
 "3388
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
+[s S214 . 1 `uc 1 ANS0 1 0 :1:0 
+`uc 1 ANS1 1 0 :1:1 
+`uc 1 ANS2 1 0 :1:2 
+`uc 1 ANS3 1 0 :1:3 
+`uc 1 ANS4 1 0 :1:4 
+`uc 1 ANS5 1 0 :1:5 
+`uc 1 ANS6 1 0 :1:6 
+`uc 1 ANS7 1 0 :1:7 
+]
+"3405
+[u S223 . 1 `S214 1 . 1 0 ]
+[v _ANSELbits ANSELbits `VES223  1 e 1 @392 ]
 "3450
 [v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
+"3592
+[v _ADIF ADIF `VEb  1 e 0 @102 ]
 "4108
 [v _RB0 RB0 `VEb  1 e 0 @48 ]
 "4111
 [v _RB1 RB1 `VEb  1 e 0 @49 ]
-"79 C:\Users\byron\OneDrive\Documents\GitHub\XC8_y_ADC\Lab4.X\main.c
+"52 C:\Users\byron\OneDrive\Documents\GitHub\XC8_y_ADC\Lab4.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"98
+"83
 } 0
-"103
+"121
+[v _setupADC setupADC `(v  1 e 1 0 ]
+{
+"146
+} 0
+"88
 [v _setup setup `(v  1 e 1 0 ]
 {
-"132
+"119
 } 0

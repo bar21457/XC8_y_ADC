@@ -44,34 +44,7 @@
 #define _XTAL_FREQ 4000000
 
 void setup(void);
-//void __interrupt()isr(void);
-
-//******************************************************************************
-// Función para configurar interrupciones
-//******************************************************************************
-//void __interrupt()isr(void){
-//    
-//    if(RBIE == 1)
-//    {
-//        if(PORTBbits.RB0 == 1)
-//        {
-//            PORTC ++;               //Incrementamos en 1 el PORTC
-//            INTCONbits.RBIE = 0;    //Bajamos la bandera de interrupción del 
-//                                    //PORTB (RBIE)
-//        }
-//        else if(PORTBbits.RB1 == 1)
-//        {
-//            PORTC --;               //Incrementamos en 1 el PORTC
-//            INTCONbits.RBIE = 0;    //Bajamos la bandera de interrupción del 
-//                                    //PORTB (RBIE)
-//        }
-//        else
-//        {
-//            
-//        }
-//        return;
-//    }
-//}
+void setupADC(void);
 
 //******************************************************************************
 // Código Principal
@@ -79,18 +52,30 @@ void setup(void);
 void main(void) {
     
     setup();
+    setupADC();
     
     while(1){
+        
+        //PreLab
+        
         if(!PORTBbits.RB0)
         {
             while(!RB0){}
-            PORTD ++;               //Incrementamos en 1 el PORTC
+            PORTD ++;           //Incrementamos en 1 el PORTC
         }
         if(!PORTBbits.RB1)
         {
             while(!RB1){}
-            PORTD --;               //Incrementamos en 1 el PORTC
+            PORTD --;           //Incrementamos en 1 el PORTC
         }
+        
+        //Lab
+        
+        ADCON0bits.GO = 1;      //Iniciamos la conversión en el ADC
+        while (ADCON0bits.GO == 1){};
+        ADIF = 0;               //Bajamos la bandera del ADC
+        PORTC = ADRESH;         //El PORTC adquiere el valor de la conversión
+        __delay_ms(10);
   
     }
     
@@ -106,14 +91,16 @@ void setup (void){
     ANSELH = 0;
     
     TRISB = 0b00000011;     //Configuración del PORTB como input
-    TRISD = 0;              //Configuración del PORTC como output
+    TRISC = 0;              //Configuración del PORTC como output
+    TRISD = 0;              //Configuración del PORTD como output
     
     OPTION_REGbits.nRBPU = 0;   //Habilitamos los pull-ups del PORTB
     WPUBbits.WPUB0 = 1;         //Habilitamos el pull-up del RB0
     WPUBbits.WPUB1 = 1;         //Habilitamos el pull-up del RB1
     
     PORTB = 0;              //Limpiamos el PORTB
-    PORTD = 0;              //Limpiamos el PORTC
+    PORTC = 0;              //Limpiamos el PORTC
+    PORTD = 0;              //Limpiamos el PORTD
     
     //Configuración del Oscilador Interno a 4MHz
     
@@ -129,4 +116,31 @@ void setup (void){
 //    INTCONbits.RBIF = 1;    //Habilitamos las interrupciones del PORTB (RBIF)
 //    INTCONbits.RBIE = 0;    //Bajamos la bandera de interrupción del PORTB (RBIE)
     
+}
+
+void setupADC (void){
+    
+    //Paso 1: Selección del puerto de entrada
+    
+    TRISAbits.TRISA0 = 1;       //Configuración del RBA0 como input
+    ANSELbits.ANS0 = 1;         //Configuración del pin RBA0 como análogo (AN0)
+    
+    //Paso 2: Configuración del módulo ADC
+    
+    ADCON0bits.ADCS0 = 1;
+    ADCON0bits.ADCS1 = 0;       //Fosc/8
+    
+    ADCON1bits.VCFG0 = 0;       //Ref VDD
+    ADCON1bits.VCFG1 = 0;       //Ref VSS
+    
+    ADCON1bits.ADFM = 0;        //Justificado hacia la izquierda
+    
+    ADCON0bits.CHS0 = 0;
+    ADCON0bits.CHS1 = 0;
+    ADCON0bits.CHS2 = 0;
+    ADCON0bits.CHS3 = 0;        //Selección del canal análogo AN0
+    
+    ADCON0bits.ADON = 1;        //Habilitamos el ADC
+    
+    __delay_us(100);            //Delay para adquirir la lectura
 }
