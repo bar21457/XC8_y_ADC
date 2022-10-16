@@ -2673,6 +2673,7 @@ extern __bank0 __bit __timeout;
 
 void setup(void);
 void setupADC(void);
+void multiplexado(void);
 
 
 
@@ -2702,7 +2703,8 @@ void main(void) {
         ADCON0bits.GO = 1;
         while (ADCON0bits.GO == 1){};
         ADIF = 0;
-        PORTC = ADRESH;
+        multiplexado();
+
         _delay((unsigned long)((10)*(4000000/4000.0)));
 
     }
@@ -2721,6 +2723,7 @@ void setup (void){
     TRISB = 0b00000011;
     TRISC = 0;
     TRISD = 0;
+    TRISE = 0;
 
     OPTION_REGbits.nRBPU = 0;
     WPUBbits.WPUB0 = 1;
@@ -2729,12 +2732,13 @@ void setup (void){
     PORTB = 0;
     PORTC = 0;
     PORTD = 0;
+    PORTE = 0;
 
 
 
     OSCCONbits.IRCF = 0b0110 ;
     OSCCONbits.SCS = 1;
-# 119 "main.c"
+# 123 "main.c"
 }
 
 void setupADC (void){
@@ -2762,4 +2766,25 @@ void setupADC (void){
     ADCON0bits.ADON = 1;
 
     _delay((unsigned long)((100)*(4000000/4000000.0)));
+}
+
+void multiplexado (void){
+
+    int unidades;
+    int decenas;
+    int numeros[] = {0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x67};
+
+    unidades = ADRESH%10;
+    decenas = ADRESH/10;
+
+    PORTC = numeros[unidades];
+    PORTEbits.RE0 = 1;
+    _delay((unsigned long)((10)*(4000000/4000.0)));
+    PORTEbits.RE0 = 0;
+
+    PORTC = numeros[decenas];
+    PORTEbits.RE1 = 1;
+    _delay((unsigned long)((10)*(4000000/4000.0)));
+    PORTEbits.RE1 = 0;
+
 }

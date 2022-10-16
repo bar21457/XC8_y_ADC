@@ -45,6 +45,7 @@
 
 void setup(void);
 void setupADC(void);
+void multiplexado(void);
 
 //******************************************************************************
 // Código Principal
@@ -74,7 +75,8 @@ void main(void) {
         ADCON0bits.GO = 1;      //Iniciamos la conversión en el ADC
         while (ADCON0bits.GO == 1){};
         ADIF = 0;               //Bajamos la bandera del ADC
-        PORTC = ADRESH;         //El PORTC adquiere el valor de la conversión
+        multiplexado();
+        //PORTC = ADRESH;         //El PORTC adquiere el valor de la conversión
         __delay_ms(10);
   
     }
@@ -93,6 +95,7 @@ void setup (void){
     TRISB = 0b00000011;     //Configuración del PORTB como input
     TRISC = 0;              //Configuración del PORTC como output
     TRISD = 0;              //Configuración del PORTD como output
+    TRISE = 0;              //Configuración del PORTE como output
     
     OPTION_REGbits.nRBPU = 0;   //Habilitamos los pull-ups del PORTB
     WPUBbits.WPUB0 = 1;         //Habilitamos el pull-up del RB0
@@ -101,6 +104,7 @@ void setup (void){
     PORTB = 0;              //Limpiamos el PORTB
     PORTC = 0;              //Limpiamos el PORTC
     PORTD = 0;              //Limpiamos el PORTD
+    PORTE = 0;              //Limpiamos el PORTD
     
     //Configuración del Oscilador Interno a 4MHz
     
@@ -143,4 +147,25 @@ void setupADC (void){
     ADCON0bits.ADON = 1;        //Habilitamos el ADC
     
     __delay_us(100);            //Delay para adquirir la lectura
+}
+
+void multiplexado (void){
+    
+    int unidades;
+    int decenas;
+    int numeros[] = {0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x67};
+    
+    unidades = ADRESH%10;
+    decenas = ADRESH/10;
+    
+    PORTC = numeros[unidades];  //PORTC = unidades del ADRESH
+    PORTEbits.RE0 = 1;          //Encendemos el display de unidades
+    __delay_ms(10);
+    PORTEbits.RE0 = 0;          //Apagamos el display de unidades
+    
+    PORTC = numeros[decenas];   //PORTC = decenas del ADRESH
+    PORTEbits.RE1 = 1;          //Encendemos el display de decenas
+    __delay_ms(10);
+    PORTEbits.RE1 = 0;          //Apagamos el display de decenas
+    
 }

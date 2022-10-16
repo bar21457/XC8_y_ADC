@@ -3,6 +3,10 @@
 [d edition pro ]
 [d chip 16F887 ]
 [d frameptr 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c90\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c90\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
 "10 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c90\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
 "4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c90\common\Umul8_16.c
@@ -11,12 +15,14 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"52 C:\Users\byron\OneDrive\Documents\GitHub\XC8_y_ADC\Lab4.X\main.c
+"53 C:\Users\byron\OneDrive\Documents\GitHub\XC8_y_ADC\Lab4.X\main.c
 [v _main main `(v  1 e 1 0 ]
-"88
+"90
 [v _setup setup `(v  1 e 1 0 ]
-"121
+"125
 [v _setupADC setupADC `(v  1 e 1 0 ]
+"152
+[v _multiplexado multiplexado `(v  1 e 1 0 ]
 "229 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
 [s S30 . 1 `uc 1 RB0 1 0 :1:0 
@@ -35,6 +41,16 @@
 [v _PORTC PORTC `VEuc  1 e 1 @7 ]
 "353
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
+"415
+[v _PORTE PORTE `VEuc  1 e 1 @9 ]
+[s S256 . 1 `uc 1 RE0 1 0 :1:0 
+`uc 1 RE1 1 0 :1:1 
+`uc 1 RE2 1 0 :1:2 
+`uc 1 RE3 1 0 :1:3 
+]
+"428
+[u S261 . 1 `S256 1 . 1 0 ]
+[v _PORTEbits PORTEbits `VES261  1 e 1 @9 ]
 "1239
 [v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
 [s S54 . 1 `uc 1 ADON 1 0 :1:0 
@@ -60,7 +76,7 @@
 ]
 [u S74 . 1 `S54 1 . 1 0 `S59 1 . 1 0 `S68 1 . 1 0 `S71 1 . 1 0 ]
 [v _ADCON0bits ADCON0bits `VES74  1 e 1 @31 ]
-[s S114 . 1 `uc 1 PS 1 0 :3:0 
+[s S117 . 1 `uc 1 PS 1 0 :3:0 
 `uc 1 PSA 1 0 :1:3 
 `uc 1 T0SE 1 0 :1:4 
 `uc 1 T0CS 1 0 :1:5 
@@ -68,13 +84,13 @@
 `uc 1 nRBPU 1 0 :1:7 
 ]
 "1367
-[s S121 . 1 `uc 1 PS0 1 0 :1:0 
+[s S124 . 1 `uc 1 PS0 1 0 :1:0 
 `uc 1 PS1 1 0 :1:1 
 `uc 1 PS2 1 0 :1:2 
 ]
-[u S125 . 1 `S114 1 . 1 0 `S121 1 . 1 0 ]
-[v _OPTION_REGbits OPTION_REGbits `VES125  1 e 1 @129 ]
-[s S193 . 1 `uc 1 TRISA0 1 0 :1:0 
+[u S128 . 1 `S117 1 . 1 0 `S124 1 . 1 0 ]
+[v _OPTION_REGbits OPTION_REGbits `VES128  1 e 1 @129 ]
+[s S198 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 TRISA3 1 0 :1:3 
@@ -84,32 +100,34 @@
 `uc 1 TRISA7 1 0 :1:7 
 ]
 "1434
-[u S202 . 1 `S193 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES202  1 e 1 @133 ]
+[u S207 . 1 `S198 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES207  1 e 1 @133 ]
 "1479
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
 "1541
 [v _TRISC TRISC `VEuc  1 e 1 @135 ]
 "1603
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
-[s S167 . 1 `uc 1 SCS 1 0 :1:0 
+"1665
+[v _TRISE TRISE `VEuc  1 e 1 @137 ]
+[s S172 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 ]
 "1883
-[s S173 . 1 `uc 1 . 1 0 :4:0 
+[s S178 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S178 . 1 `S167 1 . 1 0 `S173 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES178  1 e 1 @143 ]
-[s S140 . 1 `uc 1 WPUB 1 0 :8:0 
+[u S183 . 1 `S172 1 . 1 0 `S178 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES183  1 e 1 @143 ]
+[s S143 . 1 `uc 1 WPUB 1 0 :8:0 
 ]
 "2367
-[s S142 . 1 `uc 1 WPUB0 1 0 :1:0 
+[s S145 . 1 `uc 1 WPUB0 1 0 :1:0 
 `uc 1 WPUB1 1 0 :1:1 
 `uc 1 WPUB2 1 0 :1:2 
 `uc 1 WPUB3 1 0 :1:3 
@@ -118,20 +136,20 @@
 `uc 1 WPUB6 1 0 :1:6 
 `uc 1 WPUB7 1 0 :1:7 
 ]
-[u S151 . 1 `S140 1 . 1 0 `S142 1 . 1 0 ]
-[v _WPUBbits WPUBbits `VES151  1 e 1 @149 ]
-[s S235 . 1 `uc 1 . 1 0 :4:0 
+[u S154 . 1 `S143 1 . 1 0 `S145 1 . 1 0 ]
+[v _WPUBbits WPUBbits `VES154  1 e 1 @149 ]
+[s S240 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 VCFG0 1 0 :1:4 
 `uc 1 VCFG1 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 ADFM 1 0 :1:7 
 ]
 "2992
-[u S241 . 1 `S235 1 . 1 0 ]
-[v _ADCON1bits ADCON1bits `VES241  1 e 1 @159 ]
+[u S246 . 1 `S240 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES246  1 e 1 @159 ]
 "3388
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
-[s S214 . 1 `uc 1 ANS0 1 0 :1:0 
+[s S219 . 1 `uc 1 ANS0 1 0 :1:0 
 `uc 1 ANS1 1 0 :1:1 
 `uc 1 ANS2 1 0 :1:2 
 `uc 1 ANS3 1 0 :1:3 
@@ -141,8 +159,8 @@
 `uc 1 ANS7 1 0 :1:7 
 ]
 "3405
-[u S223 . 1 `S214 1 . 1 0 ]
-[v _ANSELbits ANSELbits `VES223  1 e 1 @392 ]
+[u S228 . 1 `S219 1 . 1 0 ]
+[v _ANSELbits ANSELbits `VES228  1 e 1 @392 ]
 "3450
 [v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
 "3592
@@ -151,18 +169,55 @@
 [v _RB0 RB0 `VEb  1 e 0 @48 ]
 "4111
 [v _RB1 RB1 `VEb  1 e 0 @49 ]
-"52 C:\Users\byron\OneDrive\Documents\GitHub\XC8_y_ADC\Lab4.X\main.c
+"53 C:\Users\byron\OneDrive\Documents\GitHub\XC8_y_ADC\Lab4.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"83
+"85
 } 0
-"121
+"125
 [v _setupADC setupADC `(v  1 e 1 0 ]
 {
-"146
+"150
 } 0
-"88
+"90
 [v _setup setup `(v  1 e 1 0 ]
 {
-"119
+"123
+} 0
+"152
+[v _multiplexado multiplexado `(v  1 e 1 0 ]
+{
+"156
+[v multiplexado@numeros numeros `[10]i  1 a 20 0 ]
+"155
+[v multiplexado@decenas decenas `i  1 a 2 22 ]
+"154
+[v multiplexado@unidades unidades `i  1 a 2 20 ]
+"155
+[v multiplexado@F1301 F1301 `[10]i  1 s 20 F1301 ]
+"171
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c90\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+{
+"10
+[v ___awmod@sign sign `uc  1 a 1 6 ]
+[v ___awmod@counter counter `uc  1 a 1 5 ]
+"5
+[v ___awmod@divisor divisor `i  1 p 2 0 ]
+[v ___awmod@dividend dividend `i  1 p 2 2 ]
+"34
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c90\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+{
+"10
+[v ___awdiv@quotient quotient `i  1 a 2 7 ]
+"11
+[v ___awdiv@sign sign `uc  1 a 1 6 ]
+[v ___awdiv@counter counter `uc  1 a 1 5 ]
+"5
+[v ___awdiv@divisor divisor `i  1 p 2 0 ]
+[v ___awdiv@dividend dividend `i  1 p 2 2 ]
+"41
 } 0
