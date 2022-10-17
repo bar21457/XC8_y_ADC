@@ -2707,8 +2707,20 @@ void main(void) {
 
         _delay((unsigned long)((10)*(4000000/4000.0)));
 
-    }
 
+
+        if(!PORTBbits.RB2)
+        {
+            while(!RB2){}
+
+            if(ADRESH > PORTD){
+                PORTEbits.RE2 = 1;
+            }
+            else{
+                PORTEbits.RE2 = 0;
+            }
+        }
+    }
     return;
 }
 
@@ -2720,7 +2732,7 @@ void setup (void){
     ANSEL = 0;
     ANSELH = 0;
 
-    TRISB = 0b00000011;
+    TRISB = 0b00000111;
     TRISC = 0;
     TRISD = 0;
     TRISE = 0;
@@ -2728,6 +2740,7 @@ void setup (void){
     OPTION_REGbits.nRBPU = 0;
     WPUBbits.WPUB0 = 1;
     WPUBbits.WPUB1 = 1;
+    WPUBbits.WPUB2 = 1;
 
     PORTB = 0;
     PORTC = 0;
@@ -2738,7 +2751,7 @@ void setup (void){
 
     OSCCONbits.IRCF = 0b0110 ;
     OSCCONbits.SCS = 1;
-# 123 "main.c"
+# 136 "main.c"
 }
 
 void setupADC (void){

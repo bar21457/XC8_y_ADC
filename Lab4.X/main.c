@@ -78,9 +78,21 @@ void main(void) {
         multiplexado();
         //PORTC = ADRESH;         //El PORTC adquiere el valor de la conversión
         __delay_ms(10);
-  
+        
+        //PostLab
+        
+        if(!PORTBbits.RB2)
+        {
+            while(!RB2){}
+            
+            if(ADRESH > PORTD){
+                PORTEbits.RE2 = 1;      //Encendemos la alarma
+            }
+            else{
+                PORTEbits.RE2 = 0;      //Apagamos la alarma
+            }
+        }
     }
-    
     return;
 }
 
@@ -92,7 +104,7 @@ void setup (void){
     ANSEL = 0;
     ANSELH = 0;
     
-    TRISB = 0b00000011;     //Configuración del PORTB como input
+    TRISB = 0b00000111;     //Configuración del PORTB como input
     TRISC = 0;              //Configuración del PORTC como output
     TRISD = 0;              //Configuración del PORTD como output
     TRISE = 0;              //Configuración del PORTE como output
@@ -100,6 +112,7 @@ void setup (void){
     OPTION_REGbits.nRBPU = 0;   //Habilitamos los pull-ups del PORTB
     WPUBbits.WPUB0 = 1;         //Habilitamos el pull-up del RB0
     WPUBbits.WPUB1 = 1;         //Habilitamos el pull-up del RB1
+    WPUBbits.WPUB2 = 1;         //Habilitamos el pull-up del RB2
     
     PORTB = 0;              //Limpiamos el PORTB
     PORTC = 0;              //Limpiamos el PORTC
