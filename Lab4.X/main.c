@@ -173,12 +173,12 @@ void multiplexado (void){
     
     PORTC = numeros[unidades];  //PORTC = unidades del ADRESH
     PORTEbits.RE0 = 1;          //Encendemos el display de unidades
-    __delay_ms(10);
+    __delay_ms(1);
     PORTEbits.RE0 = 0;          //Apagamos el display de unidades
     
     PORTC = numeros[decenas];   //PORTC = decenas del ADRESH
     PORTEbits.RE1 = 1;          //Encendemos el display de decenas
-    __delay_ms(10);
+    __delay_ms(1);
     PORTEbits.RE1 = 0;          //Apagamos el display de decenas
     
 }

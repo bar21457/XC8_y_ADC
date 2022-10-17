@@ -2792,12 +2792,12 @@ void multiplexado (void){
 
     PORTC = numeros[unidades];
     PORTEbits.RE0 = 1;
-    _delay((unsigned long)((10)*(4000000/4000.0)));
+    _delay((unsigned long)((1)*(4000000/4000.0)));
     PORTEbits.RE0 = 0;
 
     PORTC = numeros[decenas];
     PORTEbits.RE1 = 1;
-    _delay((unsigned long)((10)*(4000000/4000.0)));
+    _delay((unsigned long)((1)*(4000000/4000.0)));
     PORTEbits.RE1 = 0;
 
 }
