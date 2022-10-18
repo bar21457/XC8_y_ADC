@@ -2689,12 +2689,12 @@ void main(void) {
 
         if(!PORTBbits.RB0)
         {
-            while(!RB0){}
+            while(!RB0){multiplexado();}
             PORTD ++;
         }
         if(!PORTBbits.RB1)
         {
-            while(!RB1){}
+            while(!RB1){multiplexado();}
             PORTD --;
         }
 
@@ -2711,7 +2711,7 @@ void main(void) {
 
         if(!PORTBbits.RB2)
         {
-            while(!RB2){}
+            while(!RB2){multiplexado();}
 
             if(ADRESH > PORTD){
                 PORTEbits.RE2 = 1;
