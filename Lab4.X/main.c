@@ -123,9 +123,7 @@ void setup (void){
     
     OSCCONbits.IRCF = 0b0110 ;
     OSCCONbits.SCS = 1;
-    
-    
-    
+ 
 //    IOCB = 1;
 //    
 //    INTCONbits.GIE = 1;     //Habilitamos las interrupciones globales (GIE)

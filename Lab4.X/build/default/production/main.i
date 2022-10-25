@@ -2751,7 +2751,7 @@ void setup (void){
 
     OSCCONbits.IRCF = 0b0110 ;
     OSCCONbits.SCS = 1;
-# 136 "main.c"
+# 134 "main.c"
 }
 
 void setupADC (void){
